@@ -17,7 +17,9 @@ def test_all(address)
 		correct += single_test(address, "3 + 3", 6);
 		correct += single_test(address, "100 + 2", 102);
 		return correct
-	rescue
+	rescue 
+		puts "here"
+		puts "Team : " + address + " blew up"
 		return 0;
 	end	
 end
