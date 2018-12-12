@@ -10,12 +10,18 @@ def get_number_of_correct_responses(address)
 end
 
 def test_all(address)
-	correct = 0;
+	correct = 0;	
 	begin
-		correct += single_test(address, "3 + 4", 7);
-		correct += single_test(address, "5 + 2", 7);
-		correct += single_test(address, "3 + 3", 6);
-		correct += single_test(address, "100 + 2", 102);
+		problems  = Problems.get_problems();
+		problems.each do |problem|
+			puts problem.equation
+			puts problem.answer
+   			correct += single_test(address,problem.equation, problem.answer);	
+		end
+		# correct += single_test(address, "3 + 4", 7);
+		# correct += single_test(address, "5 + 2", 7);
+		# correct += single_test(address, "3 + 3", 6);
+		# correct += single_test(address, "100 + 2", 102);
 		return correct
 	rescue 
 		puts "here"
@@ -29,9 +35,10 @@ def single_test(address, problem, expectation)
 			problem: problem
 	};
 	response = HTTParty.post(address +"/", body)
-	if (response.code != 200)
-		raise ("none 200 reponse")
+	if (response.code > 500)
+		raise ("one 500 reponse")
 	end
+	puts response
 	result = JSON.parse(response.body)["result"]
 	if (result == expectation) 	
 		return 1;
