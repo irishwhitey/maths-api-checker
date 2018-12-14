@@ -1,12 +1,16 @@
 class Problems
 	def self.get_problems()
 		return [
+			Problem.new("",0),
+			Problem.new("3 -3",0),
 			Problem.new("3 + 4",7),
 			Problem.new("5 + 2",7),
-			Problem.new("5 - 1",4),
+			Problem.new("5 + 2",7),
+			Problem.new("5 + 2",7),
+			Problem.new("5 - 1",4),			
 			Problem.new("7 * 2",14),
-			Problem.new("-5 * 2",-10)
-		]
+			Problem.new("-5 * 2",-10),
+					]
 	end
 end
 
