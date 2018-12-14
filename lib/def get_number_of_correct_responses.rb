@@ -2,6 +2,7 @@ require 'net/http'
 require 'httparty'
 
 def get_number_of_correct_responses(address)
+	HTTParty::Basement.default_options.update(verify: false)
 	begin  
 		return test_all(address)
 	rescue
@@ -17,11 +18,7 @@ def test_all(address)
 			puts problem.equation
 			puts problem.answer
    			correct += single_test(address,problem.equation, problem.answer);	
-		end
-		# correct += single_test(address, "3 + 4", 7);
-		# correct += single_test(address, "5 + 2", 7);
-		# correct += single_test(address, "3 + 3", 6);
-		# correct += single_test(address, "100 + 2", 102);
+		end		
 		return correct
 	rescue 
 		puts "here"
@@ -34,8 +31,12 @@ def single_test(address, problem, expectation)
 	body = {			
 			problem: problem
 	};
-	response = HTTParty.post(address +"/", body)
-	if (response.code > 500)
+	puts "sending " 
+	puts body.to_json;
+	response = HTTParty.post(address +"/", :body => {
+		:problem => problem
+		}.to_json,:headers => { 'Content-Type' => 'application/json' })
+	if (response.code >= 500)
 		raise ("one 500 reponse")
 	end
 	puts response
