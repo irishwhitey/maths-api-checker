@@ -9,6 +9,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    concurrent-ruby (1.1.10)
     daemons (1.2.6)
     dashing (1.3.7)
       coffee-script (~> 2.2.0)
@@ -24,6 +25,7 @@ GEM
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     equalizer (0.0.11)
+    eventmachine (1.2.7)
     eventmachine (1.2.7-x64-mingw32)
     execjs (2.0.2)
     hike (1.2.3)
@@ -92,10 +94,11 @@ GEM
       multipart-post (~> 2.0)
       naught (~> 1.0)
       simple_oauth (~> 0.3.0)
-    tzinfo (1.2.5)
-      thread_safe (~> 0.1)
+    tzinfo (2.0.5)
+      concurrent-ruby (~> 1.0)
     unf (0.1.4)
       unf_ext
+    unf_ext (0.0.7.5)
     unf_ext (0.0.7.5-x64-mingw32)
 
 PLATFORMS
